@@ -19,7 +19,7 @@
 
     - name: Set frontend IP to variable
       set_fact:
-        __frontendIP: "{{ __openstack_instances.openstack_servers[0].accessIPv4 }}"
+        __frontendIP: "{{ __openstack_instances.ansible_facts.openstack_servers[0].accessIPv4 }}"
 
     - name: Check the webserver for expected response
       uri:
