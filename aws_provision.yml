@@ -53,7 +53,8 @@
     - name: Order service on openTLC
       command: "{{ item }}"
       loop:
-        - "source /root/credential.rc"
+        - ". /root/credential.rc"
+        - "cd /root/"
         - ./order_svc.sh -y -c 'OPENTLC Automation' -i 'Ansible Advanced - Three Tier App' -t 1 -d 'dialog_expiration=7;region=na;nodes=1;dialog_runtime=8;notes=Training - As part of course'
 
     - name: Wait for mail
