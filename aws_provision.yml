@@ -1,5 +1,5 @@
 ---
-- hosts: workstation
+- hosts: localhost
   become: True
   gather_facts: False
 
@@ -50,7 +50,6 @@
         - /root/order_svc.sh
 
     # Using this script will always deploy environments in the us-east-1 region.
-    # TODO: this shell task is not working yet!
     - name: Order service on openTLC
       shell:
         chdir: /root/
