@@ -3,7 +3,7 @@
   package:
     name: "{{ app_server_packages }}"
     state: present
-  tags: 
+  tags:
     - apps
     - tomcat
 
@@ -12,7 +12,7 @@
     src: /usr/share/java/tomcat/extras/tomcat-juli.jar
     dest: /usr/share/tomcat/bin/tomcat-juli.jar
     remote_src: yes
-  tags: 
+  tags:
     - apps
     - tomcat
 
@@ -20,7 +20,7 @@
   service:
     name: tomcat
     enabled: yes
-  tags: 
+  tags:
     - apps
     - tomcat
 
@@ -28,7 +28,7 @@
   file:
     path: "{{ tomcat_web_root }}"
     state: directory
-  tags: 
+  tags:
     - apps
     - tomcat
 
@@ -37,17 +37,9 @@
     src: index.html.j2
     dest: /usr/share/tomcat/webapps/ROOT/index.html
     mode: 0644
-    tags: 
-      - apps
-      - tomcat
-
-- name: Start Tomcat
-  service:
-    name: "{{ app_server_service }}"
-    state: started
-  tags: 
+  tags:
     - apps
     - tomcat
+  notify: start_tomcat
 
 ...
-

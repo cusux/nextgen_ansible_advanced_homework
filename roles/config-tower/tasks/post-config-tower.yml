@@ -43,7 +43,7 @@
     tower_password: r3dh4t1!
     tower_verify_ssl: no
 
-- name: Associate the workstation host to group 
+- name: Associate the workstation host to group
   command: | 
     tower-cli host associate --host "{{ host_name }}" --group "{{ group_name }}"
 

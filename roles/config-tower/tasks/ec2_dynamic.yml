@@ -32,7 +32,7 @@
   command: |
     tower-cli group associate --group tag_AnsibleGroup_appdbs --parent appdbs --inventory "{{ ec2_dynamic_inventory }}"
 
-- name: Add localhost as host 
+- name: Add localhost as host
   command: |
     tower-cli host create -n localhost --inventory "{{ ec2_dynamic_inventory }}" --variables @/root/inventory_vars.json
 

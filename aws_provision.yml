@@ -1,29 +1,33 @@
 ---
 - hosts: workstation
-  become: true
-  gather_facts: false
+  become: True
+  gather_facts: False
+
   tasks:
-    - name: create bin directory
+    - name: Create bin directory under root
       file:
         path: /root/bin
         state: directory
-    - name: get script common.sh
+
+    - name: Fetch script common.sh
       get_url:
         url: "{{ param_repo_base }}/scripts/common.sh"
         dest: /root/common.sh
         mode: 0755
 
-    - name: get script jq
-      get_url: 
+    - name: Fetch script jq
+      get_url:
         url: "{{ param_repo_base }}/scripts/jq-linux64"
         dest: /root/bin/jq
         mode: 0755
-    - name: get script order_svc.sh
+
+    - name: Fetch script order_svc.sh
       get_url:
         url: "{{ param_repo_base }}/scripts/order_svc.sh"
         dest: /root/order_svc.sh
         mode: 0755
-    - name: create credentials
+
+    - name: Create credentials
       copy:
         content: |
           export username={{ param_user }}
@@ -33,7 +37,7 @@
         mode: 0755
 
     # Fix the existing shell scripts to reference jq command with bin/jq
-    - name: fix scripts
+    - name: Fix script references
       shell: "sed -i 's/ jq/ bin\\/jq/g' {{ item }}"
       with_items:
         - /root/common.sh
@@ -41,10 +45,12 @@
 
     # Using this script will always deploy environments in the us-east-1 region.
     # TODO: this shell task is not working yet!
-    - name: order service on opentlc
+    - name: Order service on openTLC
       shell: source /root/credential.rc; ./order_svc.sh -y -c 'OPENTLC Automation' -i 'Ansible Advanced - Three Tier App' -t 1 -d 'dialog_expiration=7;region=na;nodes=1;dialog_runtime=8;notes=Training - As part of course'
       args:
         chdir: /root
     - name: Wait for mail
       pause:
-        minutes: 10 
+        minutes: 10
+
+...

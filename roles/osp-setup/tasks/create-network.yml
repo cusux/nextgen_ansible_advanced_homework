@@ -1,3 +1,4 @@
+---
 - name: Configuration of Public and Private Networks
   os_network:
     cloud: "{{ item.value.cloud_name }}"
@@ -13,8 +14,8 @@
   os_subnet:
     cloud: "{{ item.value.cloud_name }}"
     state: "{{ item.value.state }}"
-    network_name: "{{ item.value.network_name  }}"
-    name: "{{ item.value.subnet_name  }}"
+    network_name: "{{ item.value.network_name }}"
+    name: "{{ item.value.subnet_name }}"
     cidr: "{{ item.value.cidr_network }}"
     ip_version: "{{ item.value.ip_version }}"
     gateway_ip: "{{ item.value.gateway_ip | default(omit) }}"
@@ -37,3 +38,5 @@
     interfaces:
       - "{{ item.value.interfaces }}"
   with_dict: "{{ osp_router }}"
+
+...
