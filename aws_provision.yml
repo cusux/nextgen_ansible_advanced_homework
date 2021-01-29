@@ -11,27 +11,27 @@
 
     - name: Fetch script common.sh
       get_url:
-        url: "{{ param_repo_base }}/scripts/common.sh"
+        url: "{{ lookup('env','JQ_REPO_BASE') }}/scripts/common.sh"
         dest: /root/common.sh
         mode: 0755
 
     - name: Fetch script jq
       get_url:
-        url: "{{ param_repo_base }}/scripts/jq-linux64"
+        url: "{{ lookup('env','JQ_REPO_BASE') }}/scripts/jq-linux64"
         dest: /root/bin/jq
         mode: 0755
 
     - name: Fetch script order_svc.sh
       get_url:
-        url: "{{ param_repo_base }}/scripts/order_svc.sh"
+        url: "{{ lookup('env','JQ_REPO_BASE') }}/scripts/order_svc.sh"
         dest: /root/order_svc.sh
         mode: 0755
 
     - name: Create credentials
       copy:
         content: |
-          export username={{ param_user }}
-          export password={{ param_password }}
+          export username={{ lookup('env','OPENTLC_ID') }}
+          export password={{ lookup('env','OPENTLC_PASSWORD') }}
           export uri=https://labs.opentlc.com
         dest: /root/credential.rc
         mode: 0755
