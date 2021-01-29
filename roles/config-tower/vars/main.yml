@@ -4,7 +4,9 @@ org_name: Default
 scm_branch: master 
 scm_url: "{{ github_repo }}"
 proj_name: "00_Homework Assignment"
-user_name: admin 
+proj_scm_type: git
+proj_scm_url: https://github.com/cusux/nextgen_ansible_advanced_homework.git
+user_name: admin
 password: r3dh4t1!
 ssh_cred_name: "Connect_to_workstation"
 user_cred_name: "cloud-user"
@@ -15,7 +17,7 @@ workflow_template_name: cicd_workflow
 job_template_name_osp_instances: "02_Provision QA Env"
 osp_instances_playbook: site-osp-instances.yml
 group_name: workstation
-host_name: workstation-{{osp_GUID}}.{{osp_DOMAIN}}
+host_name: workstation-{{ osp_GUID }}.{{ osp_DOMAIN }}
 job_template_name_3tier_app: "04_3tier app deployment on QA Env"
 app_deploy_playbook: site-3tier-app.yml
 vault_name: yum_repo_vault
@@ -41,4 +43,6 @@ job_template_name_3tier_app_aws: "09_3 tier app on Prod"
 aws_cred_name: "Creds for AWS instances"
 job_template_smoke_aws: "10_Smoke test Prod env"
 aws_smoke_app_playbook: site-smoketest-aws.yml
+
+...
 

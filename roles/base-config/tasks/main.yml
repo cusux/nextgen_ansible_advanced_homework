@@ -1,14 +1,28 @@
 ---
-# Initial, common, system setup steps
-
-- name: enable sudo without tty for some ansible commands
+- name: Enable sudo without tty for some ansible commands
   replace:
     path: /etc/sudoers
     regexp: '^Defaults\s*requiretty'
     replace: 'Defaults  !requiretty'
     backup: yes
 
-- name: enable repos
- 
-- name: install base tools and packages
+- name: Deploy repo files for three-tier app
+  template:
+    src: repos_template.j2
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Enable the EPEL repository
+  shell: yum-config-manager --enable epel.repo
+
+- name: Install HTTPD amd HAProxy packges
+  yum:
+    name:
+      - httpd
+      - haproxy
+    state: latest
+
+...
 
