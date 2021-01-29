@@ -1,9 +1,10 @@
+=== DISCLAIMER OF FORK
+
+This repository has been forked for training purposes only. Do not use this repository in any way other than education!
+
 ==== Ansible Tower Config
 
-
 * From the cloned repo run `site-config-tower.yml` playbook to create job templates and workflow template.
-
-
 
 .List of Playbooks
 [%header,cols=2*]
