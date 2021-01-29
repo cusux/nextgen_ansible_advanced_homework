@@ -36,6 +36,12 @@
         dest: /root/credential.rc
         mode: 0755
 
+    - name: Ensure python is a valid and available command
+      file:
+        src: /bin/python
+        dest: /bin/python3
+        state: link
+
     # Fix the existing shell scripts to reference jq command with bin/jq
     - name: Fix script references
       shell: "sed -i 's/ jq/ bin\\/jq/g' {{ item }}"
