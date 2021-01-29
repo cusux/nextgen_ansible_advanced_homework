@@ -44,4 +44,3 @@ job_template_smoke_aws: "10_Smoke test Prod env"
 aws_smoke_app_playbook: site-smoketest-aws.yml
 
 ...
-
