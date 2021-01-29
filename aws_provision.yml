@@ -45,16 +45,12 @@
 
     # Using this script will always deploy environments in the us-east-1 region.
     # TODO: this shell task is not working yet!
-    # - name: Order service on openTLC
-    #   shell:
-    #     chdir: /root/
-    #     cmd: source /root/credential.rc && ./order_svc.sh -y -c 'OPENTLC Automation' -i 'Ansible Advanced - Three Tier App' -t 1 -d 'dialog_expiration=7;region=na;nodes=1;dialog_runtime=8;notes=Training - As part of course'
-
     - name: Order service on openTLC
-      command: "{{ item }}"
+      shell:
+        chdir: /root/
+        cmd: "{{ item }}"
       loop:
-        - ". /root/credential.rc"
-        - "cd /root/"
+        - source /root/credential.rc
         - ./order_svc.sh -y -c 'OPENTLC Automation' -i 'Ansible Advanced - Three Tier App' -t 1 -d 'dialog_expiration=7;region=na;nodes=1;dialog_runtime=8;notes=Training - As part of course'
 
     - name: Wait for mail
