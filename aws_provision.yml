@@ -38,8 +38,8 @@
 
     - name: Ensure python is a valid and available command
       file:
-        src: /bin/python
-        dest: /bin/python3
+        src: /bin/python3
+        dest: /bin/python
         state: link
 
     # Fix the existing shell scripts to reference jq command with bin/jq
