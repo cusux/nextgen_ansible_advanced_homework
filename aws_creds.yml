@@ -1,6 +1,6 @@
 ---
 - hosts: tag_AnsibleGroup_bastions
-  gather_facts: True
+  gather_facts: False
   become: True
 
   tasks:
